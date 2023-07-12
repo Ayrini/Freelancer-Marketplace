@@ -1,0 +1,18 @@
+<div id="search" class="container-fluid bg-white">
+  <% if (service.length===0) { %>
+    <h3 class="mt-5 pb-5 text-center"><b>Не найдены службы для: <%= searchItem %></b></h3>
+    <% } else {%>
+      <div class="mb-5 row">
+        <h5 class="col-md-10 text-muted"><b>Результаты поиска для: </b>
+          <%= searchItem %>
+        </h5>
+        <h5 class="col-md-2 text-muted text-md-end"><b>
+            <%= service.length %>
+              <%= service.length===1 ? 'Услуга' : 'Услуги' %> Found
+          </b></h5>
+      </div>
+      <!-- Start Display Grid All Searched Services -->
+      <%- include('.././manageServices/_displayGridService') %>
+        <!-- End Display Grid All Searched Services -->
+        <% } %>
+</div>

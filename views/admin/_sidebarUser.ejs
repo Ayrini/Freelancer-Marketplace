@@ -1,0 +1,83 @@
+<div class="tab-pane fade show" id="adminSidebarUserSection">
+  <div class="container my-5 bg-white" style="overflow-x: auto">
+    <h2 class="py-3"><strong>Недавние пользователи</strong></h2>
+    <table class="table table-striped" id="sidebarUsersTable">
+      <thead>
+        <tr class="btn-clr text-center">
+          <th scope="col">С</th>
+          <th scope="col">Фото</th>
+          <th scope="col">Имя</th>
+          <th scope="col">Никнейм</th>
+          <th scope="col">Сервисы</th>
+          <th scope="col">создавать заказы на обслуживание</th>
+          <th scope="col">получать заказы на услуги</th>
+          <th scope="col">Сообщения о работе</th>
+          <th scope="col">создавать приказы о вакансиях</th>
+          <th scope="col">получить заказы на размещение вакансий</th>
+          <th scope="col">Всего отправлено отзывов</th>
+          <th scope="col">общее количество полученных отзывов</th>
+          <th scope="col">общий доход от услуг($)</th>
+          <th scope="col">общий доход от сообщений о вакансиях($)</th>
+          <th scope="col">общий заработок($)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% user.forEach(singleUser=> { %>
+          <tr class="text-center">
+            <th scope="row">
+              <%= momentFormatMonthDayYear(singleUser.createdAt)%>
+            </th>
+            <td>
+              <% if (singleUser.profileImage) { %>
+                <img src="/public/uploads/<%= singleUser.profileImage %>" width="32" height="32"
+                  class="rounded-circle me-2" />
+                <% } else { %>
+                  <img src="/public/image/default-profile-photo.png" width="32" height="32"
+                    class="rounded-circle me-2" />
+                  <% } %>
+            </td>
+            <td>
+              <%= singleUser.fullname %>
+            </td>
+            <td>
+              <%= singleUser.username%>
+            </td>
+            <td>
+              <%= singleUser.services.length %>
+            </td>
+            <td>
+              <%= singleUser.createOrders.length %>
+            </td>
+            <td>
+              <%= singleUser.getOrders.length %>
+            </td>
+            <td>
+              <%= singleUser.jobPost.length %>
+            </td>
+            <td>
+              <%= singleUser.createJobPostOrders.length %>
+            </td>
+            <td>
+              <%= singleUser.getJobPostOrders.length %>
+            </td>
+            <td>
+              <%= singleUser.sentFeedBack.length %>
+            </td>
+            <td>
+              <%= singleUser.receiveFeedBack.length %>
+            </td>
+            <td>
+              <%= singleUser.earnings.totalEarning_Service %>
+            </td>
+            <td>
+              <%= singleUser.earnings.totalEarning_JobPost %>
+            </td>
+            <td>
+              <%= singleUser.earnings.totalEarning %>
+            </td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>

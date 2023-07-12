@@ -1,0 +1,45 @@
+<div class="tab-pane fade show" id="adminSidebarJobPostOrderSection">
+  <div class="container my-5 bg-white" style="overflow-x: auto">
+    <h2 class="py-3"><strong>Заказы сообщений о вакансиях</strong></h2>
+    <table class="table table-striped" id="sidebarJobPostOrdersTable">
+      <thead>
+        <tr class="btn-clr text-center">
+          <th scope="col">Создать</th>
+          <th scope="col">Номер заказа</th>
+          <th scope="col">Номер поста</th>
+          <th scope="col">Заказчик</th>
+          <th scope="col">Продавец</th>
+          <th scope="col">Цена($)</th>
+          <th scope="col">Статус</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% jobPostOrder.forEach(singleOrder=> { %>
+          <tr class="text-center">
+            <th scope="row">
+              <%= momentFormatMonthDayYear(singleOrder.createdAt)%>
+            </th>
+            <td>
+              <%= singleOrder.id %>
+            </td>
+            <td>
+              <%= singleOrder.jobPost._id %>
+            </td>
+            <td>
+              <%= singleOrder.jobPost.userId._id %>
+            </td>
+            <td>
+              <%= singleOrder.request.requestSender._id %>
+            </td>
+            <td>
+              <%= singleOrder.request.offerPrice.toFixed(2) %>
+            </td>
+            <td><span class="btn <%= singleOrder.status ? 'btn-success' : 'btn-danegr' %>">
+                <%= singleOrder.status ? 'Закочен' : 'Незакончен' %>
+              </span></td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
